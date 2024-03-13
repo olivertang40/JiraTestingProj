@@ -1,7 +1,6 @@
 package base;
 
 import drivers.DriverFactory;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -13,7 +12,7 @@ public class Base {
 
     @BeforeClass
     public void setup(){
-        driver = Driver.getDriver();
+        driver = DriverFactory.getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }

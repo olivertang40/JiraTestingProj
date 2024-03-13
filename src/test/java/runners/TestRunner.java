@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterTest;
 
 @CucumberOptions(
-        features = "classpath:features",
+        features = "src/test/resources/groupManage.feature",
         glue = "classpath:stepDef"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
