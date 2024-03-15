@@ -23,7 +23,6 @@ public class TestCreateScrumProjectUI{
     @Before
     public void setUp() {
         driver = DriverFactory.getDriver();
-//        baseUrl = "http://localhost:8080/";
         driver.navigate().to(baseUrl);
     }
 
