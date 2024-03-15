@@ -19,4 +19,22 @@ public class UserAPI extends BaseAPI{
         return response;
     }
 
+    public Response fetchUserDetail(String name){
+        return given(requestSpec)
+                .auth()
+                .basic("sliang","gqgx815")
+                .pathParam("name", name)
+                .when()
+                .get("/?key=JIRAUSER10100");
+    }
+
+    public Response changeUserStatusByName(String name){
+        return given(requestSpec)
+                .auth()
+                .basic("sliang","gqgx815")
+                .pathParam("name", name)
+                .when()
+                .body("{\"active\":false}")
+                .put("/rest/api/2/user");
+    }
 }

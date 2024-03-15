@@ -1,53 +1,135 @@
 package stepDef;
 
-import api.UserAPI;
+import constants.URL;
+import drivers.DriverFactory;
 import entity.User;
+import api.UserAPI;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.response.Response;
 import org.junit.Assert;
+import io.restassured.path.json.JsonPath;
+import page_object_model.HomePO;
+
+import java.util.List;
+
+import static io.restassured.RestAssured.given;
+
 
 public class UserStepDef {
-    private static final ThreadLocal<User> currentUser = new ThreadLocal<>();
 
-//    @When("I create a user with {string}, {string}, {string}, {string} and {string[]}")
-//    public void ICreateAUser(String name, String password, String emailAddress, String displayName, String[] applicationKeys){
-//        currentUser.set(new UserAPI().createUser(User.builder()
-//                    .name(name)
-//                    .password(password)
-//                    .emailAddress(emailAddress)
-//                    .displayName(displayName)
-//                    .applicationKeys(applicationKeys)
-//                    .build())
-//                .then()
-//                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schema/user-schema.json"))
-//                .statusCode(201)
-//                .extract().jsonPath().getObject("", User.class));
-//    }
-    @When("I create a user with {string}, {string}, {string}, {string} and {string[]}")
-    public void iCreateAUserWithNamePasswordEmailAddressDisplayNameAndApplicationKeys(String name, String password, String emailAddress, String displayName, String[] applicationKeys) {
-        currentUser.set(new UserAPI().createUser(User.builder()
-                    .name(name)
-                    .password(password)
-                    .emailAddress(emailAddress)
-                    .displayName(displayName)
-                    .applicationKeys(applicationKeys)
-                    .build())
-                .then()
-                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schema/user-schema.json"))
-                .statusCode(201)
-                .extract().jsonPath().getObject("", User.class));
-    }
-    @And("I get the user info with key")
-    public void iGetTheUserInfoWithKey(){
+    Response response;
 
+    //create a user with fixed info
+    @When("I create a user with info")
+    public void iCreateAUserWithInfo() {
+        String requestBody = "{\n" +
+                "\t\"name\": \"charlie\",\n" +
+                "    \"password\": \"charlie\",\n" +
+                "    \"emailAddress\":\"charlie@charlie.com\",\n" +
+                "    \"displayName\":\"Charlie\",\n" +
+                "    \"applicationKeys\":[\n" +
+                "        \"jira-software\"\n" +
+                "    ]\n" +
+                "}";
+        String username = "sliang";
+        String password = "gqgx815";
+
+       response = RestAssured.given()
+                .auth().preemptive().basic(username, password)
+                .contentType("application/json")
+                .body(requestBody)
+                .post("http://localhost:8080/rest/api/2/user");
+
+        // Validate the response
+        response.then().log().body().statusCode(200);
     }
 
-    @Then("The user info should match the {string}, [string] and {string}")
-    public void theUserInfoShouldMatchTheNamePasswordEmailAddressDisplayNameAndApplicationKeys(String name, String emailAddress, String displayName) {
-        Assert.assertEquals(currentUser.get().getName(), name);
-        Assert.assertEquals(currentUser.get().getEmailAddress(), emailAddress);
-        Assert.assertEquals(currentUser.get().getDisplayName(), displayName);
+    @Then("The user should be created successfully")
+    public void theUserShouldBeCreatedSuccessfully() {
+        response.then().log().body().statusCode(201);
     }
+
+    @When("I deactivate the user {string}")
+    public void iDeactivateTheUser(String userName) {
+
+        String username = "sliang";
+        String password = "gqgx815";
+
+        // Send a request to deactivate the user
+        response = RestAssured.given()
+                .auth().preemptive().basic(username, password)
+                .contentType("application/json")
+                .queryParam("username", userName)
+                .log().all()
+                .body("{\"active\":false}")
+                .put("http://localhost:8080/rest/api/2/user");
+
+        // Validate the response
+        response.then().log().body().statusCode(200);
+
+    }
+
+    @Then("The user status should be false")
+    public void theUserStatusShouldBeFalse() {
+        RestAssured.baseURI = "http://localhost:8080";
+
+        // Send a request to check user status
+        response = RestAssured.given()
+                .auth().preemptive().basic("sliang","gqgx815")
+                .contentType(ContentType.JSON)
+                .queryParam("username", "charlie")
+                .get("/rest/api/2/user");
+
+        // Validate the response
+        response.then().log().all().statusCode(200);
+
+        //assert
+        Assert.assertEquals("false",response.jsonPath().getString("active"));
+    }
+
+
+    @When("I update current user group to test")
+    public void iUpdateCurrentUserGroupToTest() {
+        RestAssured.baseURI = "http://localhost:8080";
+
+        // update charlie to group test
+        response = RestAssured.given()
+                .auth().preemptive().basic("sliang","gqgx815")
+                .contentType("application/json")
+                .queryParam("groupname", "test")
+                .when()
+                .body("{\"name\":\"charlie\"}")
+                .post("/rest/api/2/group/user");
+
+        // Validate the response
+        response.then().log().body().statusCode(200);
+    }
+
+    @Then("I find user in the group")
+    public void iFindUserInTheGroup() {
+        RestAssured.baseURI = "http://localhost:8080";
+
+        // find user in test group
+        response = RestAssured.given()
+                .auth().preemptive().basic("sliang","gqgx815")
+                .contentType("application/json")
+                .get("/rest/api/2/group/member");
+
+        // Validate the response
+        response.then().statusCode(200);
+
+        //assert
+        String name = response.jsonPath().getString("values[0].name");
+        Assert.assertEquals("charlie", name);
+    }
+
+
+
 }
