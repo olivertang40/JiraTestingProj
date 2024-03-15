@@ -1,4 +1,4 @@
-package auth;
+package api;
 
 import api.BaseAPI;
 import entity.RequestVo;
@@ -18,9 +18,9 @@ public class LoginAPI{
 
     @Test
     public Response userLogin(){
-
         Response response = given()
-                .auth().basic("admin","12345")
+                .auth().preemptive().basic("admin","12345")
+                .contentType(ContentType.JSON)
                 .when()
                 .post("/rest/auth/1/session");
         response.then()

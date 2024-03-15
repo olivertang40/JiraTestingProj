@@ -1,7 +1,6 @@
 package page_object_model;
 
 import drivers.DriverFactory;
-import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -73,8 +72,7 @@ public class AdminPO extends BasePO{
         addSelectedUsersBtn.click();
     }
 
-    @Then("I should see group users number 1")
-    public void iShouldSeeGroupUsersNumber1(String userName){
-        Assert.assertEquals(addedGroupMember.getText(), userName);
+    public void verifyGroupMemberName(String username){
+        Assert.assertEquals(addedGroupMember.getText(), username);
     }
 }
