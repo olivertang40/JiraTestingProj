@@ -30,7 +30,7 @@ public class TestCreateScrumProject {
 
     @Then("the project should be created successfully")
     public void verifyProjectCreation() {
-        response.then().statusCode(201); // Assuming 201 is the status code for successful creation
+        response.then().log().body().statusCode(201); // Assuming 201 is the status code for successful creation
     }
 
     @Then("I apply an existing permission scheme")

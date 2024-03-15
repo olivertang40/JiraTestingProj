@@ -3,8 +3,8 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = "classpath:features",
-        glue = "classpath:stepDef",
+        features = "src/test/resources/features/user.feature",
+        glue = "classpath:StepDef",
         tags = "@user"
 )
 public class TestRunner extends AbstractTestNGCucumberTests
