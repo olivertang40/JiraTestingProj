@@ -3,7 +3,6 @@ package project_management;
 
 import drivers.DriverFactory;
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,15 +11,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 
-public class TestCreateScrumProjectUI{
-    private String baseUrl ="http://localhost:8080/";
+public class TestCreateScrumProjectUI {
+    private String baseUrl = "http://localhost:8080/";
     private WebDriver driver;
-    @Before
+
+    @BeforeClass
     public void setUp() {
         driver = DriverFactory.getDriver();
         driver.navigate().to(baseUrl);
@@ -45,6 +46,7 @@ public class TestCreateScrumProjectUI{
         // Click the login button
         loginButton.click();
     }
+
     @When("I create a Scrum project")
     public void createScrumProject() throws InterruptedException {
         WebElement projectElement = driver.findElement(By.id("browse_link"));
@@ -72,6 +74,7 @@ public class TestCreateScrumProjectUI{
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
 
     }
+
     @Then("the project should be created successfully with UI")
     public void verifyProjectCreation() {
         WebElement projectElement = driver.findElement(By.id("browse_link"));
@@ -81,12 +84,13 @@ public class TestCreateScrumProjectUI{
         WebElement scrumElement = driver.findElement(By.xpath("//td[text()='TEST']"));
         assert scrumElement.isDisplayed();
     }
-    @After
+    
     @AfterClass
     public void tearDown() {
         // Close the WebDriver
         driver.quit();
     }
+
     @Test
     public void testCreateScrumProject() throws InterruptedException {
         // Navigate to the create project page
