@@ -12,13 +12,13 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 
-public class GroupManageUISteps {
+public class GroupManageUI {
 
     private final WebDriver driver;
     private AdminPO adminPO;
     private HomePO homePO;
 
-    public GroupManageUISteps() {
+    public GroupManageUI() {
         driver = DriverFactory.getDriver();
     }
 

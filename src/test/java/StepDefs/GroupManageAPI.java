@@ -8,13 +8,13 @@ import io.restassured.response.Response;
 import org.openqa.selenium.WebDriver;
 
 
-public class GroupManageAPISteps {
+public class GroupManageAPI {
     private final WebDriver driver;
     private final GroupAPI groupAPI;
 
     private Response response;
 
-    public GroupManageAPISteps() {
+    public GroupManageAPI() {
         driver = DriverFactory.getDriver();
         groupAPI = new GroupAPI();
     }

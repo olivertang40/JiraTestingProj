@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
         features = "src/test/resources/group_manage_api.feature",
         glue = {"StepDefs", "PageObjectModel"}
 )
-public class TestRunnerGroupApi extends AbstractTestNGCucumberTests {
+public class GroupAPI extends AbstractTestNGCucumberTests {
 
     @AfterTest
     public void quitBrowser() {

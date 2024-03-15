@@ -10,5 +10,5 @@ import org.testng.annotations.Test;
         glue = "ProjectManagement",
         monochrome = true
 )
-public class TestCreateProjectUIRunner extends AbstractTestNGCucumberTests {
+public class CreateProjectUI extends AbstractTestNGCucumberTests {
 }

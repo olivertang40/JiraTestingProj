@@ -9,7 +9,7 @@ import org.testng.annotations.DataProvider;
         glue = "classpath:StepDef",
         tags = "@user"
 )
-public class TestUserRunner extends AbstractTestNGCucumberTests {
+public class UserAPI extends AbstractTestNGCucumberTests {
     @DataProvider(parallel = true)
     @Override
     public Object[][] scenarios() {

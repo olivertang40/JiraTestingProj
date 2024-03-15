@@ -8,6 +8,6 @@ import io.cucumber.testng.CucumberOptions;
 //        glue = {"stepDef", "page_object_model"}
 )
 
-public class TestGroupUIRunner extends AbstractTestNGCucumberTests {
+public class GroupUI extends AbstractTestNGCucumberTests {
 
 }

@@ -6,14 +6,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 
-public class LoginStepAPISteps {
+public class LoginStepAPI {
 
     private static final ThreadLocal<User> currentUser = new ThreadLocal<>();
 
     private final LoginAPI loginAPI;
     private Response response;
 
-    public LoginStepAPISteps() {
+    public LoginStepAPI() {
         loginAPI = new LoginAPI();
     }
 

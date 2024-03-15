@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class UserUISteps {
+public class UserUI {
     private WebDriver driver;
     private final String baseUrl = "http://localhost:8080/";
 

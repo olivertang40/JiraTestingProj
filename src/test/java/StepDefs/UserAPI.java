@@ -8,7 +8,7 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 
 
-public class UserAPISteps {
+public class UserAPI {
 
     Response response;
 

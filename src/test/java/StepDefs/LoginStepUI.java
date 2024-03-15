@@ -9,12 +9,12 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class LoginStepUISteps {
+public class LoginStepUI {
 
     private final WebDriver driver;
     private final LoginPO loginPO;
 
-    public LoginStepUISteps() {
+    public LoginStepUI() {
         driver = DriverFactory.getDriver();
         loginPO = new LoginPO();
     }

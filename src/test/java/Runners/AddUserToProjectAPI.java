@@ -8,5 +8,5 @@ import org.testng.annotations.Test;
 @CucumberOptions(
         features = "src/test/resources/features/add_user_to_project_api.feature"
 )
-public class TestAddUserToProjectRunner extends AbstractTestNGCucumberTests {
+public class AddUserToProjectAPI extends AbstractTestNGCucumberTests {
 }

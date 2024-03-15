@@ -11,6 +11,6 @@ import org.testng.annotations.Test;
         monochrome = true
 )
 
-public class TestCreateProjectRunner extends AbstractTestNGCucumberTests {
+public class CreateProjectAPI extends AbstractTestNGCucumberTests {
 
 }
