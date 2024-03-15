@@ -4,7 +4,7 @@ Feature: As an admin user, I want to manage groups
   Scenario Outline: Valid login
     Given I am on the login page
     When I enter the valid credential with <username> and <password>
-    And  click the login button
+    When I click the login button
     Then I should be directed to the dashboard page
     Examples:
       | username | password |

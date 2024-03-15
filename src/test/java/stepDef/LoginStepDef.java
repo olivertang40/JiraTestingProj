@@ -28,10 +28,7 @@ public class LoginStepDef {
         User admin = User.builder().username("admin").password("12345").build();
 
         response = loginAPI.userLogin(admin);
-
-
     }
-
 
     @Then("The response status code is 200")
     public void theResponseStatusCodeIs200() {

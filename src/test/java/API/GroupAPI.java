@@ -1,4 +1,4 @@
-package api;
+package API;
 
 import api.BaseAPI;
 import entity.RequestVo;
@@ -9,40 +9,27 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.request;
 
-public class LoginAPI extends BaseAPI{
+public class GroupAPI extends BaseAPI{
 
-    public LoginAPI(){
-        requestSpec.basePath("/rest/auth/1/session");
+    public GroupAPI(){
+        requestSpec.basePath("/rest/auth/2/group");
+//        RestAssured.baseURI = "http://localhost:8080";
+    }
+
+    @Test
+    public Response createGroup(String groupName){
         RestAssured.baseURI = "http://localhost:8080";
-    }
-
-    @Test
-    public Response userLogin(User user){
-//        String requestBody = "{ \"username\": \"admin\", \"password\": \"12345\" }";
-//        User admin = User.builder().username("admin").password("12345").build();
-        Response response = RestAssured.given(requestSpec)
-//                .auth().preemptive().basic("admin","12345")
-                .body(user)
-                .when()
-                .post();
-        return response;
-
-    }
-
-    @Test
-    public Response createGroup(){
         RequestVo requestVo = RequestVo.builder()
                 .id("https://docs.atlassian.com/jira/REST/schema/add-group#")
                 .title("Add Group")
                 .type("object")
                 .additionalProperties(false)
-                .name("test").build();
+                .name(groupName).build();
 
-        Response response = given(requestSpec)
-//                .contentType(ContentType.JSON)
-//                .auth().basic("admin","12345")
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .auth().preemptive().basic("admin","12345")
                 .body(requestVo.toString())
                 .when()
                 .post("/rest/api/2/group");
@@ -58,7 +45,7 @@ public class LoginAPI extends BaseAPI{
         Response response = given()
                 .contentType(ContentType.JSON)
                 .auth().basic("admin","12345")
-                .pathParam("groupname","dev")
+                .queryParam("groupname","dev")
                 .when()
                 .post("/rest/auth/2/group/member");
 

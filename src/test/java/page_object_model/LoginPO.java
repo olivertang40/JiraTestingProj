@@ -12,7 +12,7 @@ public class LoginPO extends BasePO{
     @FindBy(xpath = "//input[@id='login-form-password']")
     public WebElement passwordInput;
 
-    @FindBy(id = "login-form-submit")
+    @FindBy(id = "login")
     public WebElement loginBtn;
 
     public void inputUserName(String username){
