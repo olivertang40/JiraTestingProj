@@ -6,11 +6,9 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/CreateScrumProject.feature",
+        features = "src/test/resources/features/CreateScrumPorjectUI.feature",
         glue = "project_management",
         monochrome = true
 )
-
-public class TestCreateProjectRunner extends AbstractTestNGCucumberTests {
-
+public class TestCreateProjectUIRunner extends AbstractTestNGCucumberTests {
 }

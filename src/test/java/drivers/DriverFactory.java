@@ -4,54 +4,46 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import utils.ApplicationProperties;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
+    private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
-    private static final ThreadLocal<WebDriver> driverlocal = new ThreadLocal<>();
-
-    private static WebDriver createWebDriver(){
-        WebDriver webDriver;
-        try(FileInputStream input = new FileInputStream("src/test/resources/application.properties")){
-            Properties properties = new Properties();
-            properties.load(input);
-
-            switch (properties.getProperty("browserType").toLowerCase()){
-                case "chrome":{
-                    WebDriverManager.chromedriver().clearDriverCache().setup();
-                    webDriver = new ChromeDriver();
-                    break;
-                }
-                case "edge":{
-                    WebDriverManager.edgedriver().clearDriverCache().setup();
-                    webDriver = new EdgeDriver();
-                    break;
-                }
-                default:{
-                    throw new IllegalArgumentException("browser type is not supported!");
-                }
+    private static void setupDriver() {
+        switch (ApplicationProperties.get("browserType").toLowerCase()) {
+            case "edge": {
+                WebDriverManager.edgedriver().clearDriverCache().setup();
+                webDriver.set(new EdgeDriver());
+                break;
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
+            case "chrome": {
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                webDriver.set(new ChromeDriver());
+                break;
+            }
+            default: {
+                System.out.println("Browser type is not supported!");
+            }
         }
-
-        return webDriver;
+        webDriver.get().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        webDriver.get().manage().window().maximize();
     }
 
     public static WebDriver getDriver(){
-        if(driverlocal.get() == null){
-            driverlocal.set(createWebDriver());
+        if(webDriver.get() == null){
+            setupDriver();
         }
-        return driverlocal.get();
+        return webDriver.get();
     }
 
     public static void teardown(){
-        if(driverlocal.get() != null){
-            driverlocal.get().quit();
-            driverlocal.remove();
+        if(webDriver.get() != null){
+            webDriver.get().quit();
+            webDriver.remove();
         }
     }
-}
+    }
+
+

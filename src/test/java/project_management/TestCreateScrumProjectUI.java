@@ -39,8 +39,8 @@ public class TestCreateScrumProjectUI{
         WebElement passwordInput = driver.findElement(By.id("login-form-password"));
         WebElement loginButton = driver.findElement(By.id("login-form-submit"));
 
-        usernameInput.sendKeys("zeenwang7");
-        passwordInput.sendKeys("970227");
+        usernameInput.sendKeys("admin");
+        passwordInput.sendKeys("12345");
 
         // Click the login button
         loginButton.click();

@@ -10,13 +10,14 @@ public class ApplicationProperties {
 
     static{
          properties = new Properties();
-        try {
-            FileInputStream fis = new FileInputStream("src/test/resources/application.properties");
+        try(FileInputStream fis = new FileInputStream("src/test/resources/application.properties")){
             properties.load(fis);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static String get(String key){ return properties.getProperty(key);}
+    public static String get(String key) {
+        return properties.getProperty(key);
+    }
 }

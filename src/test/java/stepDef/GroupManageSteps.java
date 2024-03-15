@@ -6,21 +6,28 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import page_object_model.AdminPO;
 import page_object_model.HomePO;
 
-import static org.bouncycastle.cms.RecipientId.password;
 
-public class GroupManageStepDefs {
+
+public class GroupManageSteps {
 
     private AdminPO adminPO;
     private HomePO homePO;
+    private final WebDriver driver;
 
-    @Given("I visit the home page")
-    public void iVisitThehomePage(){
-        DriverFactory.getDriver().navigate().to(URL.Home.toString());
+    public GroupManageSteps(){
+        driver = DriverFactory.getDriver();
+    }
+
+    @Given("I visit the home page as an admin user")
+    public void iVisitTheHomePage(){
+        adminPO = new AdminPO();
         homePO = new HomePO();
+        driver.navigate().to(URL.Home.toString());
     }
 
     @When("I click User Management Button")
@@ -29,8 +36,8 @@ public class GroupManageStepDefs {
         homePO.clickUserManageBtn();
     }
 
-    @And("I enter password as <password>")
-    public void iEnterPasswordAs(String password){
+    @And("I enter password as {string}")
+    public void iEnterPasswordAsPassword(String password) {
         homePO.enterAdminCredential(password);
     }
 
@@ -38,17 +45,6 @@ public class GroupManageStepDefs {
     public void iShouldViewTheUserAdminPage(){
         Assert.assertEquals(DriverFactory.getDriver().getCurrentUrl(),
                 URL.UserAdmin.toString());
-    }
-
-    @When("When I click the groups")
-    public void iClickTheGroups(){
-        adminPO = new AdminPO();
-        adminPO.groupsBtnClick();
-    }
-
-    @And("I enter group name as <groupName>")
-    public void iEnterGroupNameAs(String groupName){
-        adminPO.inputGroupName(groupName);
     }
 
     @And("I click add group button")
@@ -61,6 +57,20 @@ public class GroupManageStepDefs {
         adminPO.editGroupMember();
     }
 
+    @When("I click the groups")
+    public void iClickTheGroups() {
+        adminPO.groupsBtnClick();
+    }
+
+    @And("I enter group name as {string}")
+    public void iEnterGroupNameAsGroupName(String groupName) {
+        adminPO.inputGroupName(groupName);
+    }
+
+    @Then("I should see group member as {string}")
+    public void iShouldSeeGroupMemberAsUserName(String username) {
+        adminPO.verifyGroupMemberName(username);
+    }
 
 
 

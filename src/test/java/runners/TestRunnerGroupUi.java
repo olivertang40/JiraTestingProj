@@ -7,10 +7,10 @@ import org.testng.annotations.AfterTest;
 
 @CucumberOptions(
         features = "src/test/resources/groupManage.feature",
-        glue = "classpath:stepDef"
+        glue = {"stepDef", "page_object_model"}
 )
 
-public class TestRunner extends AbstractTestNGCucumberTests {
+public class TestRunnerGroupUi extends AbstractTestNGCucumberTests {
 
     @AfterTest
     public void quitBrowser() {
