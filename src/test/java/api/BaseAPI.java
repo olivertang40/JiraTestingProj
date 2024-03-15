@@ -11,15 +11,15 @@ import static io.restassured.RestAssured.given;
 
 public class BaseAPI {
 
-        protected RequestSpecification requestSpec = given()
-                .baseUri("http://localhost:8080")
-                .auth().preemptive().basic("admin","12345")
-                .contentType(ContentType.JSON);
+    protected RequestSpecification requestSpec = given()
+            .baseUri("http://localhost:8080")
+            .auth().preemptive().basic("admin", "12345")
+            .contentType(ContentType.JSON);
 
-        protected ResponseSpecification responseSpec = given()
-                .then()
-                .response()
-                .log().body()
-                .time(Matchers.lessThan(10L), TimeUnit.SECONDS);
+    protected ResponseSpecification responseSpec = given()
+            .then()
+            .response()
+            .log().body()
+            .time(Matchers.lessThan(10L), TimeUnit.SECONDS);
 
 }
