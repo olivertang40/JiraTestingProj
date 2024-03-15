@@ -6,7 +6,8 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/add_user_to_project_api.feature"
+        features = "src/test/resources/features/add_user_to_project_api.feature",
+        glue = "StepDefs"
 )
 public class AddUserToProjectAPI extends AbstractTestNGCucumberTests {
 }

@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 @Test
 @CucumberOptions(
         features = "src/test/resources/features/create_scrum_project_api.feature",
-        glue = "ProjectManagement",
+        glue = "classpath:StepDefs",
         monochrome = true
 )
 
