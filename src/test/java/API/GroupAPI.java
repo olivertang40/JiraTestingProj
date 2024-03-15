@@ -1,7 +1,7 @@
 package API;
 
 import Entity.RequestVo;
-import api.BaseAPI;
+import API.BaseAPI;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

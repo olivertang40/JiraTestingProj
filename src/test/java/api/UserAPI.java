@@ -1,5 +1,6 @@
-package api;
+package API;
 
+import API.BaseAPI;
 import Entity.User;
 import io.restassured.response.Response;
 

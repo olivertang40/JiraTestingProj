@@ -1,5 +1,6 @@
-package api;
+package API;
 
+import API.BaseAPI;
 import Entity.RequestVo;
 import Entity.User;
 import io.restassured.RestAssured;
