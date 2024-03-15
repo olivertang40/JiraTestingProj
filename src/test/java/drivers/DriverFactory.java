@@ -19,7 +19,7 @@ public class DriverFactory {
             Properties properties = new Properties();
             properties.load(input);
 
-            switch (properties.getProperty("driver").toLowerCase()){
+            switch (properties.getProperty("browserType").toLowerCase()){
                 case "chrome":{
                     WebDriverManager.chromedriver().clearDriverCache().setup();
                     webDriver = new ChromeDriver();

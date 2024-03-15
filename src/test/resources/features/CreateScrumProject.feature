@@ -4,3 +4,5 @@ Feature: Create Scrum Project
     Given I am logged in as an admin user
     When I create a Scrum project with given details
     Then the project should be created successfully
+    Then I apply an existing permission scheme
+    Then the permission scheme should be applied successfully

@@ -9,6 +9,7 @@ import org.testng.annotations.AfterTest;
         features = "src/test/resources/groupManage.feature",
         glue = "classpath:stepDef"
 )
+
 public class TestRunner extends AbstractTestNGCucumberTests {
 
     @AfterTest

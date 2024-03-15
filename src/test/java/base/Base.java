@@ -7,19 +7,18 @@ import org.testng.annotations.BeforeClass;
 
 import java.util.concurrent.TimeUnit;
 
-public class Base {
+public abstract class Base {
     protected WebDriver driver;
 
     @BeforeClass
-    public void setup(){
+    public void setup() {
         driver = DriverFactory.getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
     @AfterClass
-    public void teardown(){
+    public void teardown() {
         driver.quit();
     }
-
 }
