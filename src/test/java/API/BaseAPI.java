@@ -13,13 +13,14 @@ public class BaseAPI {
 
     protected RequestSpecification requestSpec = given()
             .baseUri("http://localhost:8080")
-            .auth().preemptive().basic("admin", "12345")
-            .contentType(ContentType.JSON);
+//            .auth().preemptive().basic("admin", "12345")
+            .contentType(ContentType.JSON)
+            .log().all();
 
     protected ResponseSpecification responseSpec = given()
             .then()
             .response()
-            .log().body()
+            .log().all()
             .time(Matchers.lessThan(10L), TimeUnit.SECONDS);
 
 }

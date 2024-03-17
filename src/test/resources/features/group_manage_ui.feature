@@ -25,4 +25,4 @@ Feature: As an admin user, I want to manage groups
 
     Examples:
       | password | groupname | username |
-      | "12345"  | "test2"   | "admin"  |
+      | "12345"  | "test2"   | "test"  |

@@ -11,6 +11,12 @@ public class HomePO extends BasePO {
     @FindBy(id = "admin_users_menu")
     public WebElement userManagement;
 
+    @FindBy(xpath = "//a[@id='browse_link']")
+    public WebElement projectBtn;
+
+    @FindBy(id = "admin_main_proj_link_lnk")
+    public WebElement JiraTestBtn;
+
     @FindBy(xpath = "//input[@name=\"webSudoPassword\"]")
     public WebElement passwordInput;
 
@@ -23,6 +29,13 @@ public class HomePO extends BasePO {
 
     public void clickUserManageBtn() {
         userManagement.click();
+    }
+
+    public void clickProjectsBtn(){projectBtn.click();}
+
+    public void clickJiraTestProject()
+    {
+        JiraTestBtn.click();
     }
 
     public void enterAdminCredential(String password) {

@@ -6,16 +6,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 
-public class GroupManageAPI {
-    private final WebDriver driver;
+public class CreateGroupAPI {
     private final GroupAPI groupAPI;
 
     private Response response;
 
-    public GroupManageAPI() {
-        driver = DriverFactory.getDriver();
+    public CreateGroupAPI() {
         groupAPI = new GroupAPI();
     }
 
@@ -27,5 +26,8 @@ public class GroupManageAPI {
     @Then("The group should be created successfully")
     public void theGroupShouldBeCreatedSuccessfully() {
         response.then().statusCode(201);
+        Assert.assertEquals(response.jsonPath().getString("name"), "test");
     }
+
+
 }
