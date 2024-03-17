@@ -14,7 +14,7 @@ public class UserAPI extends BaseAPI {
     public Response createUser(User payload) {
         Response response = given(requestSpec)
                 .auth()
-                .basic("sliang", "gqgx815")
+                .basic("admin", "12345")
                 .body(payload)
                 .when()
                 .post();

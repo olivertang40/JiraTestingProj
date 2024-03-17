@@ -1,5 +1,4 @@
-package ProjectManagement;
-// AdminCreateScrumProjectTest.java
+package StepDefs.ProjectManagement;
 
 import Drivers.DriverFactory;
 import io.cucumber.java.en.Given;
@@ -11,12 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-
-public class TestCreateScrumProjectUI {
+public class CreateScrumProjectUI {
     private final String baseUrl = "http://localhost:8080/";
     private WebDriver driver;
 
@@ -86,15 +83,8 @@ public class TestCreateScrumProjectUI {
 
     @AfterClass
     public void tearDown() {
-        // Close the WebDriver
-        driver.quit();
-    }
-
-    @Test
-    public void testCreateScrumProject() throws InterruptedException {
-        // Navigate to the create project page
-        loggedInAsAdminUser();
-        createScrumProject();
-        verifyProjectCreation();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

@@ -21,7 +21,7 @@ public class LoginStepAPI {
     public void i_enter_valid_user_credential() {
 //        String requestBody = "{ \"username\": \"admin\", \"password\": \"12345\" }";
 //        currentUser.set(User.builder().username(username).password(password).build());
-        User admin = User.builder().username("admin").password("12345").build();
+        User admin = User.builder().username("admin").password("123456").build();
 
         response = loginAPI.userLogin(admin);
     }
