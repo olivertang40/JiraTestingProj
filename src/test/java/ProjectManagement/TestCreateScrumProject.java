@@ -14,14 +14,14 @@ public class TestCreateScrumProject {
 
     @Given("I am logged in as an admin user")
     public void loggedInAsAdminUser() {
-        RestAssured.authentication = RestAssured.basic("zeenwang7", "970227");
+        RestAssured.authentication = RestAssured.basic("admin", "12345");
     }
 
     @When("I create a Scrum project with given details")
     public void createScrumProject() {
         String requestBody = "{ \"key\": \"SOF\", \"name\": \"Software Sample\", \"projectTypeKey\": \"software\", \"projectTemplateKey\": \"com.pyxis.greenhopper.jira:gh-scrum-template\", \"description\": \"Example Project description\", \"lead\": \"zeenwang7\", \"assigneeType\": \"PROJECT_LEAD\", \"avatarId\": 10200 }";
         response = RestAssured.given()
-                .auth().preemptive().basic("zeenwang7", "970227")
+                .auth().preemptive().basic("admin", "12345")
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .post("http://localhost:8080/rest/api/2/project");
@@ -37,7 +37,7 @@ public class TestCreateScrumProject {
     public void applyPermissionScheme() {
         String requestBody = "{ \"id\": \"10000\" }";
         response = RestAssured.given()
-                .auth().preemptive().basic("zeenwang7", "970227")
+                .auth().preemptive().basic("admin", "12345")
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .put("http://localhost:8080/rest/api/2/project/" + projectId + "/permissionscheme");
