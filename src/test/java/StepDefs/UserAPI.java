@@ -24,17 +24,17 @@ public class UserAPI {
                 "        \"jira-software\"\n" +
                 "    ]\n" +
                 "}";
-        String username = "sliang";
-        String password = "gqgx815";
+        String userName = "admin";
+        String passWord = "12345";
 
         response = RestAssured.given()
-                .auth().preemptive().basic(username, password)
+                .auth().preemptive().basic(userName, passWord)
                 .contentType("application/json")
                 .body(requestBody)
                 .post("http://localhost:8080/rest/api/2/user");
 
-        // Validate the response
-        response.then().log().body().statusCode(200);
+        //Validate the response
+        response.then().log().body().statusCode(201);
     }
 
     @Then("The user should be created successfully")
@@ -45,8 +45,8 @@ public class UserAPI {
     @When("I deactivate the user {string}")
     public void iDeactivateTheUser(String userName) {
 
-        String username = "sliang";
-        String password = "gqgx815";
+        String username = "admin";
+        String password = "12345";
 
         // Send a request to deactivate the user
         response = RestAssured.given()
@@ -68,7 +68,7 @@ public class UserAPI {
 
         // Send a request to check user status
         response = RestAssured.given()
-                .auth().preemptive().basic("sliang", "gqgx815")
+                .auth().preemptive().basic("admin", "12345")
                 .contentType(ContentType.JSON)
                 .queryParam("username", "charlie")
                 .get("/rest/api/2/user");
@@ -87,7 +87,7 @@ public class UserAPI {
 
         // update charlie to group test
         response = RestAssured.given()
-                .auth().preemptive().basic("sliang", "gqgx815")
+                .auth().preemptive().basic("admin", "12345")
                 .contentType("application/json")
                 .queryParam("groupname", "test")
                 .when()
@@ -104,7 +104,7 @@ public class UserAPI {
 
         // find user in test group
         response = RestAssured.given()
-                .auth().preemptive().basic("sliang", "gqgx815")
+                .auth().preemptive().basic("admin", "12345")
                 .contentType("application/json")
                 .get("/rest/api/2/group/member");
 

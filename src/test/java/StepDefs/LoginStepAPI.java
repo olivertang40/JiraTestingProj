@@ -1,7 +1,7 @@
 package StepDefs;
 
-import Entity.User;
 import API.LoginAPI;
+import Entity.User;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;

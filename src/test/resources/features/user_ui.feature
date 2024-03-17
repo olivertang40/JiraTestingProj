@@ -7,5 +7,5 @@ Feature: User functionalities UI
 
   Scenario: Admin user deactivated a user
     Given I login as an admin
-    When I deactivatd the user in UI
+    When I deactivate the user in UI
     Then I can see the user status changed
