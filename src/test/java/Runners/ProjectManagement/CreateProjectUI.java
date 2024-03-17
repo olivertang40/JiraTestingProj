@@ -1,4 +1,4 @@
-package Runners;
+package Runners.ProjectManagement;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 @Test
 @CucumberOptions(
         features = "src/test/resources/features/create_scrum_project_ui.feature",
-        glue = "StepDefs",
+        glue = "StepDefs.ProjectManagement",
         monochrome = true
 )
 public class CreateProjectUI extends AbstractTestNGCucumberTests {

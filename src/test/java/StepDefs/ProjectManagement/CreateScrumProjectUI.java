@@ -1,4 +1,4 @@
-package StepDefs;
+package StepDefs.ProjectManagement;
 
 import Drivers.DriverFactory;
 import io.cucumber.java.en.Given;
@@ -83,7 +83,8 @@ public class CreateScrumProjectUI {
 
     @AfterClass
     public void tearDown() {
-        // Close the WebDriver
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
