@@ -15,7 +15,6 @@ public class GroupAPI extends BaseAPI {
         requestSpec.basePath("/rest/api/2/group");
     }
 
-    @Test
     public Response createGroup(String groupName) {
 //        RequestVo requestVo = RequestVo.builder()
 //                .id("https://docs.atlassian.com/jira/REST/schema/add-group#")
@@ -43,7 +42,6 @@ public class GroupAPI extends BaseAPI {
         return response;
     }
 
-    @Test
     public Response getGroup() {
 //        RestAssured.baseURI = "http://localhost:8080";
         Response response = given(requestSpec)
@@ -77,7 +75,6 @@ public class GroupAPI extends BaseAPI {
         return response;
     }
 
-    @Test
     public Response getUsersByRole() {
         int roleId = 10101;
         requestSpec.basePath("/rest/api/2/project");

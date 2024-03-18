@@ -5,7 +5,8 @@ import Utils.ApplicationProperties;
 
 public enum URL {
     Home(""),
-    UserAdmin("/secure/admin/user/UserBrowser.jspa");
+    UserAdmin("/secure/admin/user/UserBrowser.jspa"),
+    Backlog("/secure/RapidBoard.jspa");
 
     private final String url;
 
