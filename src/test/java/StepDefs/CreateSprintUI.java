@@ -3,14 +3,13 @@ package StepDefs;
 import Constants.TITLE;
 import Constants.URL;
 import Drivers.DriverFactory;
-import PageObjectModel.AdminPO;
 import PageObjectModel.HomePO;
 import PageObjectModel.ProjectPO;
-import ProjectManagement.TestCreateScrumProjectUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -25,13 +24,22 @@ public class SpringManageUI {
         driver = DriverFactory.getDriver();
     }
 
-    @Given("I am logged in as an admin user with UI")
-    public void iVisitTheHomePage() {
-        TestCreateScrumProjectUI testCreateScrumProjectUI = new TestCreateScrumProjectUI();
-        testCreateScrumProjectUI.loggedInAsAdminUser();
+    @Given("I logged in as an admin with UI")
+    public void iAmloggedAsAdmin() {
         homePO = new HomePO();
         projectPO = new ProjectPO();
         driver.navigate().to(URL.Home.toString());
+
+        // Enter username and password
+        WebElement usernameInput = driver.findElement(By.id("login-form-username"));
+        WebElement passwordInput = driver.findElement(By.id("login-form-password"));
+        WebElement loginButton = driver.findElement(By.id("login"));
+
+        usernameInput.sendKeys("admin");
+        passwordInput.sendKeys("12345");
+
+        // Click the login button
+        loginButton.click();
     }
 
     @When("I click projects button")
@@ -48,7 +56,9 @@ public class SpringManageUI {
     public void iShouldViewBacklogPage() {
         Assert.assertEquals(driver.getTitle(),
                 TITLE.JIR_BOARD.toString());
+        projectPO.clickBacklogBtn();
     }
+
 
     @When("I click create a new Sprint")
     public void iClickCreateANewSprint() {
