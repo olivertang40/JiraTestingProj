@@ -19,7 +19,7 @@ public class CommonSteps {
     }
 
     @Given("I am logged in as an admin user with UI")
-    public void loggedInAsAdminUser() {
+    public void i_am_logged_in_as_an_admin_user_with_ui() {
         // Navigate to the login page
         if (driver == null) {
             setUp();

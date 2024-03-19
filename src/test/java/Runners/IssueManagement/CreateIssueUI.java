@@ -6,9 +6,9 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/create_issue_ui.feature.feature",
-        glue = "StepDefs.IssueManagement",
-        monochrome = true
+        features = "src/test/resources/features/create_issue_ui.feature",
+        glue = "StepDefs.IssueManagement"
+//        monochrome = true
 )
 public class CreateIssueUI extends AbstractTestNGCucumberTests {
 }
