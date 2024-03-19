@@ -1,6 +1,5 @@
 package StepDefs.ProjectManagement;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
@@ -11,10 +10,10 @@ public class CreateScrumProjectAPI {
     String projectId;
     private Response response;
 
-    @Given("I am logged in as an admin user")
-    public void loggedInAsAdminUser() {
-        RestAssured.authentication = RestAssured.basic("admin", "12345");
-    }
+//    @Given("I am logged in as an admin user")
+//    public void loggedInAsAdminUser() {
+//        RestAssured.authentication = RestAssured.basic("admin", "12345");
+//    }
 
     @When("I create a Scrum project with given details")
     public void createScrumProject() {
