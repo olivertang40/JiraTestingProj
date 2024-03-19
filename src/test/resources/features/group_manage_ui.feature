@@ -8,7 +8,7 @@ Feature: As an admin user, I want to manage groups
     Then I should be directed to the dashboard page
     Examples:
       | username | password |
-      | "admin"  | "12345"  |
+      | "admin"  | "localhost8080"  |
 
 
   @positive
@@ -24,5 +24,11 @@ Feature: As an admin user, I want to manage groups
     Then I should see group member as <username>
 
     Examples:
-      | password | groupname | username |
-      | "12345"  | "test2"   | "test"  |
+      |    password      | groupname | username |
+      | "localhost8080"  | "test2"   |  "dev"   |
+
+  @negative
+  Scenario: Admin filters user based on the roles
+    When  I visit the project page as an admin user
+    And  I filter users by project roles
+    Then I should view the developer role filter

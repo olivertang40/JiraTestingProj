@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 
 import java.time.Duration;
 
@@ -18,7 +19,7 @@ public class UserUI {
     private WebDriver driver;
     private final String baseUrl = "http://localhost:8080/";
 
-    @Before
+    @BeforeClass
     public void setUp() {
         driver = DriverFactory.getDriver();
         driver.navigate().to(baseUrl);
@@ -36,7 +37,7 @@ public class UserUI {
         WebElement loginButton = driver.findElement(By.id("login-form-submit"));
 
         usernameInput.sendKeys("admin");
-        passwordInput.sendKeys("12345");
+        passwordInput.sendKeys("localhost8080");
 
         loginButton.click();
     }
@@ -55,7 +56,7 @@ public class UserUI {
 
         //authenticate as admin user
         WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
-        authInsert.sendKeys("12345");
+        authInsert.sendKeys("localhost8080");
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
         WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
         confirmButton.click();
@@ -102,7 +103,7 @@ public class UserUI {
 
         //authenticate as admin user
         WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
-        authInsert.sendKeys("12345");
+        authInsert.sendKeys("localhost8080");
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
         WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
         confirmButton.click();

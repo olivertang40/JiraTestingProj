@@ -16,9 +16,9 @@ public class GetUsersByRolesAPI {
         groupAPI = new GroupAPI();
     }
 
-    @When("I get users based on roleId")
-    public void iGetUsersBasedOnRoleId() {
-        response = groupAPI.getUsersByRole();
+    @When("I get users based on roleId {int}")
+    public void iGetUsersBasedOnRoleId(int roleId) {
+        response = groupAPI.getUsersByRole(roleId);
     }
 
     @Then("The users should be fetched correctly")

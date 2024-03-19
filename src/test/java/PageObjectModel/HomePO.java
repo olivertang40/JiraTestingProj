@@ -23,6 +23,12 @@ public class HomePO extends BasePO {
     @FindBy(id = "login-form-submit")
     public WebElement confirmBtn;
 
+    @FindBy(id = "header-details-user-fullname")
+    public WebElement headerDetailUser;
+
+    @FindBy(id = "log_out")
+    public WebElement logOutBtn;
+
     public void clickDropMenu() {
         dropMenu.click();
     }
@@ -41,5 +47,13 @@ public class HomePO extends BasePO {
     public void enterAdminCredential(String password) {
         passwordInput.sendKeys(password);
         confirmBtn.click();
+    }
+
+    public void clickUserHeader(){
+        headerDetailUser.click();
+    }
+
+    public void clickLogOut(){
+        logOutBtn.click();
     }
 }
