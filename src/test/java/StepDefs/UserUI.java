@@ -5,9 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,7 +35,7 @@ public class UserUI {
         WebElement loginButton = driver.findElement(By.id("login-form-submit"));
 
         usernameInput.sendKeys("admin");
-        passwordInput.sendKeys("localhost8080");
+        passwordInput.sendKeys("12345");
 
         loginButton.click();
     }
@@ -56,7 +54,7 @@ public class UserUI {
 
         //authenticate as admin user
         WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
-        authInsert.sendKeys("localhost8080");
+        authInsert.sendKeys("12345");
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
         WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
         confirmButton.click();
@@ -103,7 +101,7 @@ public class UserUI {
 
         //authenticate as admin user
         WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
-        authInsert.sendKeys("localhost8080");
+        authInsert.sendKeys("12345");
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
         WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
         confirmButton.click();
@@ -120,7 +118,61 @@ public class UserUI {
     public void iCanSeeTheUserStatusChanged() throws InterruptedException {
         //checkbox to deactivate
         WebElement userStatus = driver.findElement(By.id("user-edit-active"));
-        //click?
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", userStatus);
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+
+        //click update button
+        WebElement updateButton = driver.findElement(By.id("user-edit-submit"));
+        updateButton.click();
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+    }
+
+    @When("I assign current user to a group")
+    public void iAssignCurrentUserToAGroup() throws InterruptedException {
+        //Click admin menu on bar
+        WebElement adminMenu = driver.findElement(By.id("admin_menu"));
+        adminMenu.click();
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+
+        //choose the user management
+        WebElement adminUserMenu = driver.findElement(By.id("admin_users_menu"));
+        adminUserMenu.click();
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+
+        //authenticate as admin user
+        WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
+        authInsert.sendKeys("12345");
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+        WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
+        confirmButton.click();
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+
+        //assign to a new group
+        WebElement moreButton = driver.findElement(By.xpath("//a[@href='#user-actions-user2']"));
+        moreButton.click();
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+
+        //click edit user group
+        WebElement editUserGroupButton = driver.findElement(By.id("editgroups_user2"));
+        editUserGroupButton.click();
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+
+        //insert group name "test"
+        WebElement insertGroupName = driver.findElement(By.id("groupsToJoin-textarea"));
+        insertGroupName.sendKeys("test");
+        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+
+        //hit enter key to confirm group name
+        insertGroupName.sendKeys(Keys.ENTER);
+    }
+
+    @Then("I can see the user in the new group")
+    public void iCanSeeTheUserInTheNewGroup() throws InterruptedException {
+        //hit join group key
+        WebElement joinGroupButton = driver.findElement(By.id("user-edit-groups-join"));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", joinGroupButton);
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
 
     }
