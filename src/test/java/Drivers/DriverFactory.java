@@ -38,12 +38,12 @@ public class DriverFactory {
         return webDriver.get();
     }
 
-//    public static void teardown(){
-//        if(webDriver.get() != null){
-//            webDriver.get().quit();
-//            webDriver.remove();
-//        }
-//    }
+    public static void teardown(){
+        if(webDriver.get() != null){
+            webDriver.get().quit();
+            webDriver.remove();
+        }
+    }
 }
 
 

@@ -1,4 +1,4 @@
-Feature: Create a new issue
+Feature: Create a new issue UI
   Background:
     Given I am logged in as an admin user with UI
     And I am on the project page
