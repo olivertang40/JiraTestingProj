@@ -1,8 +1,8 @@
 package API;
 
+import Entity.RequestVo;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.given;
 
 public class GroupAPI extends BaseAPI {
@@ -23,10 +23,10 @@ public class GroupAPI extends BaseAPI {
                 + "\"title\": \"Add Group\", "
                 + "\"type\": \"object\", "
                 + "\"additionalProperties\": false, "
-                + "\"name\": \"test\" }";
+                + "\"name\": \"" + groupName + "\" }";
 
         Response response = given(requestSpec)
-                .auth().preemptive().basic("admin", "12345")
+                .auth().preemptive().basic("admin", "localhost8080")
                 .body(requestBody)
                 .post();
 
@@ -39,11 +39,10 @@ public class GroupAPI extends BaseAPI {
     }
 
     public Response getGroup() {
-//        RestAssured.baseURI = "http://localhost:8080";
         Response response = given(requestSpec)
 //                .contentType(ContentType.JSON)
-                .auth().preemptive().basic("admin", "12345")
-                .queryParam("groupname", "dev")
+                .auth().preemptive().basic("admin", "localhost8080")
+                .queryParam("groupname", "test3")
                 .when()
                 .post("/member");
 
@@ -55,11 +54,11 @@ public class GroupAPI extends BaseAPI {
         return response;
     }
 
-    public Response addUserToGroup() {
-        String requestBody = "{ \"name\": \"test\" }";
+    public Response addUserToGroup(String username, String groupName){
+        String requestBody = "{ \"name\": \"" + username +"\" }";
         Response response = RestAssured.given(requestSpec)
-                .auth().preemptive().basic("admin", "12345")
-                .queryParam("groupname", "test")
+                .auth().preemptive().basic("admin", "localhost8080")
+                .queryParam("groupname", groupName)
                 .body(requestBody)
                 .post("/user");
 
@@ -71,11 +70,11 @@ public class GroupAPI extends BaseAPI {
         return response;
     }
 
-    public Response getUsersByRole() {
-        int roleId = 10101;
+    public Response getUsersByRole(int roleId) {
+//        int roleId = 10101;
         requestSpec.basePath("/rest/api/2/project");
         Response response = given(requestSpec)
-                .auth().preemptive().basic("admin", "12345")
+                .auth().preemptive().basic("admin", "localhost8080")
                 .pathParams("roleId", roleId)
                 .when()
                 .get("/10000/role/{roleId}");

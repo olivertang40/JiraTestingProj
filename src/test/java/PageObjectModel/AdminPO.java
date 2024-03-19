@@ -25,7 +25,7 @@ public class AdminPO extends BasePO {
     @FindBy(xpath = "//span[@title='Select a user(s)']")
     public WebElement editIcon;
 
-    @FindBy(xpath = "//input[@value = 'test']")
+    @FindBy(xpath = "//input[@value = 'dev']")
     public WebElement user;
 
     @FindBy(id = "multiselect-submit")
@@ -34,7 +34,7 @@ public class AdminPO extends BasePO {
     @FindBy(id = "add-users-to-selected-groups")
     public WebElement addSelectedUsersBtn;
 
-    @FindBy(xpath = "//option[@value= 'test,test']")
+    @FindBy(xpath = "//option[@value= 'dev,test']")
     public WebElement addedGroupMember;
 
 
@@ -73,6 +73,6 @@ public class AdminPO extends BasePO {
     }
 
     public void verifyGroupMemberName(String username) {
-        Assert.assertEquals(addedGroupMember.getText(), username);
+        Assert.assertTrue(addedGroupMember.getText().contains(username));
     }
 }

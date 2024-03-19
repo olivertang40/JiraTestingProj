@@ -26,7 +26,7 @@ public class CreateGroupAPI {
     @Then("The group should be created successfully")
     public void theGroupShouldBeCreatedSuccessfully() {
         response.then().statusCode(201);
-        Assert.assertEquals(response.jsonPath().getString("name"), "test");
+        Assert.assertEquals(response.jsonPath().getString("name"), "test3");
     }
 
 

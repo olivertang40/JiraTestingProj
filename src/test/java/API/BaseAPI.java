@@ -13,7 +13,7 @@ public class BaseAPI {
 
     protected RequestSpecification requestSpec = given()
             .baseUri("http://localhost:8080")
-//            .auth().preemptive().basic("admin", "12345")
+//            .auth().preemptive().basic("admin", "localhost8080")
             .contentType(ContentType.JSON)
             .log().all();
 

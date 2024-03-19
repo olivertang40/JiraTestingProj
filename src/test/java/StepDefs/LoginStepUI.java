@@ -21,14 +21,13 @@ public class LoginStepUI {
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() throws InterruptedException {
-        driver.navigate().to(URL.Home.toString());
         System.out.println("before loginPO");
+        driver.navigate().to(URL.Home.toString());
         System.out.println("after loginPO");
     }
 
     @When("I enter the valid credential with {string} and {string}")
     public void i_enter_the_valid_credential_with_and(String username, String password) throws InterruptedException {
-        Thread.sleep(4000);
         loginPO.inputUserName(username);
         loginPO.inputPassword(password);
     }
@@ -46,7 +45,7 @@ public class LoginStepUI {
 //        WebElement loginButton = driver.findElement(By.id("login-form-submit"));
 //
 //        usernameInput.sendKeys("admin");
-//        passwordInput.sendKeys("12345");
+//        passwordInput.sendKeys("admin12345");
 //
 //        // Click the login button
 //        loginButton.click();

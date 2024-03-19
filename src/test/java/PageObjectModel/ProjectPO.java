@@ -16,11 +16,23 @@ public class ProjectPO extends BasePO {
     @FindBy(xpath = "//span[@data-fieldname='sprintName']")
     public WebElement sprintTitle;
 
-    @FindBy(xpath = "(//button[@class='aui-button aui-button-subtle'])[1]")
+    @FindBy(xpath = "//a[@data-label='Backlog']")
+    public WebElement backlogBtn;
+
+    @FindBy(xpath = "//a[@data-label='Active sprints']")
+    public WebElement activeSprintBtn;
+
+    @FindBy(xpath = "(//button[@class='aui-button aui-button-subtle'])[2]")
     public WebElement backlogIssue;
 
+    @FindBy(xpath = "(//button[@class='aui-button aui-button-subtle'])[1]")
+    public WebElement sprintIssue;
+
+    @FindBy(xpath = "(//textarea[@name='summary'])[2]")
+    public WebElement backlogIssueInput;
+
     @FindBy(xpath = "(//textarea[@name='summary'])[1]")
-    public WebElement issueInput;
+    public WebElement sprintIssueInput;
 
     public void clickCreateSprint() {
         createSprintBtn.click();
@@ -30,13 +42,21 @@ public class ProjectPO extends BasePO {
         createConfirmBtn.click();
     }
 
-    public void clickBacklogIssue(){
+    public void clickBacklogBtn(){
+        backlogBtn.click();
+    }
+
+    public void clickActiveSprintBtn(){
+        activeSprintBtn.click();
+    }
+
+    public void clickCreateBacklogIssue(){
         backlogIssue.click();
     }
 
-    public void inputIssue(){
-        issueInput.sendKeys("template issue");
-        issueInput.sendKeys(Keys.ENTER);
+    public void inputBacklogIssue(String message){
+        backlogIssueInput.sendKeys(message);
+        backlogIssueInput.sendKeys(Keys.ENTER);
     }
 
 }
