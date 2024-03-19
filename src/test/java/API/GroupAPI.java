@@ -1,13 +1,9 @@
 package API;
 
-import Entity.RequestVo;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.request;
 
 public class GroupAPI extends BaseAPI {
 
@@ -59,11 +55,11 @@ public class GroupAPI extends BaseAPI {
         return response;
     }
 
-    public Response addUserToGroup(){
+    public Response addUserToGroup() {
         String requestBody = "{ \"name\": \"test\" }";
         Response response = RestAssured.given(requestSpec)
                 .auth().preemptive().basic("admin", "12345")
-                .queryParam("groupname","test")
+                .queryParam("groupname", "test")
                 .body(requestBody)
                 .post("/user");
 

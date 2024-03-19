@@ -1,7 +1,6 @@
 package StepDefs.ProjectManagement;
 
 import Drivers.DriverFactory;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
@@ -9,39 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 
 import java.time.Duration;
 
 public class CreateScrumProjectUI {
     private final String baseUrl = "http://localhost:8080/";
-    private WebDriver driver;
-
-    @BeforeClass
-    public void setUp() {
-        driver = DriverFactory.getDriver();
-        driver.navigate().to(baseUrl);
-    }
-
-    @Given("I am logged in as an admin user with UI")
-    public void loggedInAsAdminUser() {
-        // Navigate to the login page
-        if (driver == null) {
-            setUp();
-        }
-        driver.get(baseUrl + "/login.jsp");
-
-        // Enter username and password
-        WebElement usernameInput = driver.findElement(By.id("login-form-username"));
-        WebElement passwordInput = driver.findElement(By.id("login-form-password"));
-        WebElement loginButton = driver.findElement(By.id("login-form-submit"));
-
-        usernameInput.sendKeys("admin");
-        passwordInput.sendKeys("12345");
-
-        // Click the login button
-        loginButton.click();
-    }
+    private WebDriver driver = DriverFactory.getDriver();
 
     @When("I create a Scrum project")
     public void createScrumProject() throws InterruptedException {
@@ -63,8 +35,6 @@ public class CreateScrumProjectUI {
         WebElement nameInput = driver.findElement(By.id("name"));
         nameInput.sendKeys("test");
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
-//        WebElement leadField = driver.findElement(By.id("lead-field"));
-//        leadField.sendKeys("zeenwang7@gmail.com");
         WebElement submitButton = driver.findElement(By.cssSelector(".add-project-dialog-create-button.pt-submit-button.aui-button.aui-button-primary"));
         submitButton.click();
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));

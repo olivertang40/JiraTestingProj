@@ -1,5 +1,11 @@
-Feature: Add user to project
+Feature: Add User to Project
 
-  Scenario: Admin user adds a user to the current project
-    When I add a user to the current project
-    Then the user should be added to the project successfully
+  Background:
+    Given I am logged in as an admin user with UI
+    And I am on the project page
+
+  Scenario: Add User to Project
+    And I Click on the project settings
+    And I Click on the users and roles
+    And I Click on the Add Users to Role
+    Then the user should be added to the project successfully with UI
