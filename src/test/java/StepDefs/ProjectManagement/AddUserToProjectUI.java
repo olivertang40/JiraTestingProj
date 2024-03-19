@@ -1,6 +1,5 @@
 package StepDefs.ProjectManagement;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,19 +13,19 @@ public class AddUserToProjectUI {
     //    private final String baseUrl = "http://localhost:8080/";
     private WebDriver driver = Drivers.DriverFactory.getDriver();
 
-    @Given("I am on the project page")
-    public void i_am_on_the_project_page() {
-        WebElement projectElement = driver.findElement(By.id("browse_link"));
-        projectElement.click();
-        WebElement allProjectElement = driver.findElement(By.id("project_view_all_link_lnk"));
-        allProjectElement.click();
-        // Find the link using the xpath
-        WebElement testLink = driver.findElement(By.linkText("test"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].style.border='3px solid red'", testLink);
-        // Click the link
-        testLink.click();
-    }
+//    @Given("I am on the project page")
+//    public void i_am_on_the_project_page() {
+//        WebElement projectElement = driver.findElement(By.id("browse_link"));
+//        projectElement.click();
+//        WebElement allProjectElement = driver.findElement(By.id("project_view_all_link_lnk"));
+//        allProjectElement.click();
+//        // Find the link using the xpath
+//        WebElement testLink = driver.findElement(By.linkText("test"));
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].style.border='3px solid red'", testLink);
+//        // Click the link
+//        testLink.click();
+//    }
 
     @Then("I Click on the project settings")
     public void i_click_on_the_project_settings() throws InterruptedException {
