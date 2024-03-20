@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 @Test
 @CucumberOptions(
-        features = "src/test/resources/features/view_my_issue.feature",
+        features = "src/test/resources/features/view_my_issue_ui.feature",
         glue = "StepDefs",
         monochrome = true
 )
