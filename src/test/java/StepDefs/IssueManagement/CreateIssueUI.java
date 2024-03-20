@@ -23,13 +23,6 @@ public class CreateIssueUI {
         WebElement openInDialogButton = driver.findElement(By.xpath("//button[contains(text(), 'Open in dialog')]"));
         openInDialogButton.click();
         Sleeper.SYSTEM_SLEEPER.sleep(java.time.Duration.ofSeconds(1));
-//        WebElement issueType = driver.findElement(By.id("issuetype-single-select"));
-//        issueType.click();
-//        Sleeper.SYSTEM_SLEEPER.sleep(java.time.Duration.ofSeconds(1));
-//        WebElement expandedElement = driver.findElement(By.cssSelector("#issuetype-field[aria-expanded='true']"));
-//        WebElement bugType = expandedElement.findElement(By.xpath("//div[contains(text(), 'Bug')]"));
-//        bugType.click();
-        Sleeper.SYSTEM_SLEEPER.sleep(java.time.Duration.ofSeconds(1));
         WebElement summary = driver.findElement(By.id("summary"));
         summary.sendKeys("Test Summary");
         Sleeper.SYSTEM_SLEEPER.sleep(java.time.Duration.ofSeconds(1));

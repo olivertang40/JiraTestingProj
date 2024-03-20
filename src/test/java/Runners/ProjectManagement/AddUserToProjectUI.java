@@ -7,7 +7,8 @@ import org.testng.annotations.Test;
 @Test
 @CucumberOptions(
         features = "src/test/resources/features/add_user_to_project_ui.feature",
-        glue = "StepDefs.ProjectManagement"
+        glue = "StepDefs",
+        monochrome = true
 )
 public class AddUserToProjectUI extends AbstractTestNGCucumberTests {
 }
