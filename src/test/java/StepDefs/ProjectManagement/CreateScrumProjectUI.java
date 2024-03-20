@@ -6,13 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Sleeper;
-import org.testng.annotations.AfterClass;
 
 import java.time.Duration;
 
 public class CreateScrumProjectUI {
     private final String baseUrl = "http://localhost:8080/";
-    private WebDriver driver;
+    private WebDriver driver = Drivers.DriverFactory.getDriver();
 
     @When("I create a Scrum project")
     public void createScrumProject() throws InterruptedException {
@@ -50,10 +49,6 @@ public class CreateScrumProjectUI {
         allProjectElement.click();
         WebElement scrumElement = driver.findElement(By.xpath("//td[text()='TEST']"));
         assert scrumElement.isDisplayed();
-    }
-
-    @AfterClass
-    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }

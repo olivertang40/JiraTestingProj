@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 @Test
 @CucumberOptions(
         features = "src/test/resources/features/create_scrum_project_ui.feature",
-        glue = "StepDefs.ProjectManagement",
+        glue = "StepDefs",
         monochrome = true
 )
 public class CreateProjectUI extends AbstractTestNGCucumberTests {
