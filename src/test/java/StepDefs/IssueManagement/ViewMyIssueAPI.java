@@ -1,2 +1,4 @@
-package StepDefs.IssueManagement;public class ViewMyIssueAPI {
+package StepDefs.IssueManagement;
+
+public class ViewMyIssueAPI {
 }
