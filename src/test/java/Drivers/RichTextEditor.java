@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class RichTextEditor {
+    // Use to switch between the driver and the iframe
     private WebDriver driver;
     private String iframeClass;
 
