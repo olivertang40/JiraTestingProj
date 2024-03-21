@@ -1,30 +1,17 @@
 package StepDefs.ProjectManagement;
 
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Sleeper;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 public class AddUserToProjectUI {
     //    private final String baseUrl = "http://localhost:8080/";
     private WebDriver driver = Drivers.DriverFactory.getDriver();
-
-    @Then("I Click on the project settings")
-    public void i_click_on_the_project_settings() throws InterruptedException {
-        // Find the elements using the class name
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait up to 10 seconds
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".aui-icon.aui-icon-small.aui-iconfont-configure"), 1));
-        List<WebElement> configureElements = driver.findElements(By.cssSelector(".aui-icon.aui-icon-small.aui-iconfont-configure"));
-        // Get the second element
-        WebElement projectSettingsElement = configureElements.get(1);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].style.border='3px solid red'", projectSettingsElement);
-        projectSettingsElement.click();
-    }
 
     @Then("I Click on the users and roles")
     public void i_click_on_the_users_and_roles() {
@@ -54,7 +41,6 @@ public class AddUserToProjectUI {
         searchInput.sendKeys("charlie");
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(2));
         searchInput.sendKeys(Keys.ENTER);
-        // Find the dropdown element using its CSS class
         WebElement multiSelectDropdown2 = driver.findElement(By.xpath("//*[@id=\"ADD_USER_OR_GROUP_FORM\"]/div[2]/div/div"));
 
         // Click the dropdown to open it
