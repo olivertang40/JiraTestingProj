@@ -161,7 +161,7 @@ public class WorkflowUI {
     public void iCanSeeFourSteps() throws InterruptedException {
 
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(3));
-        driver.quit();
+        //driver.quit();
     }
 
     @When("I edit columns")
@@ -213,7 +213,7 @@ public class WorkflowUI {
         logout.click();
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
 
-        driver.quit();
+        //driver.quit();
     }
 
     @Given("I login as a dev")
@@ -257,11 +257,11 @@ public class WorkflowUI {
     @Then("I can see status is changed")
     public void iCanSeeStatusIsChanged() throws InterruptedException {
         //choose progress status
-        WebElement progress = driver.findElement(By.xpath("//span[.='to progress']"));
+        WebElement progress = driver.findElement(By.xpath("//span[.='Resolved']"));
         progress.click();
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(3));
 
-        driver.quit();
+        //driver.quit();
     }
 
     @Given("I login as a QA user")
