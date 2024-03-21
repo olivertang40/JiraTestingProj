@@ -22,12 +22,12 @@ public class CreateSprintUI {
 
     public CreateSprintUI() {
         driver = DriverFactory.getDriver();
-    }
-
-    @Given("I logged in as an admin with UI")
-    public void iAmloggedAsAdmin() {
         homePO = new HomePO();
         projectPO = new ProjectPO();
+    }
+
+    @Given("I am logged in as an admin user with UI with password {string}")
+    public void i_am_logged_in_as_an_admin_user_with_ui(String password) {
         driver.navigate().to(URL.Home.toString());
 
         // Enter username and password
@@ -36,7 +36,7 @@ public class CreateSprintUI {
         WebElement loginButton = driver.findElement(By.id("login"));
 
         usernameInput.sendKeys("admin");
-        passwordInput.sendKeys("admin12345");
+        passwordInput.sendKeys(password);
 
         // Click the login button
         loginButton.click();
@@ -73,7 +73,7 @@ public class CreateSprintUI {
     @Then("The sprint should be created successfully with UI")
     public void theSprintShouldBeCreatedSuccessfullyWithUI() {
         WebElement sprintTitle = projectPO.sprintTitle;
-        Assert.assertEquals(sprintTitle.getText(),"JIR Sprint 1");
+        Assert.assertEquals(sprintTitle.getText(),"JIR Sprint 2");
     }
 
 
