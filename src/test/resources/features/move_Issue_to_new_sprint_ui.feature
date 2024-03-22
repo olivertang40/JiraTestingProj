@@ -3,7 +3,8 @@ Feature: Move issue to new Sprint with UI
 #  Background:
 
   Scenario Outline: Admin user move issue to new sprint
-    Given I log in and am on backlog page
+    Given I am logged in as an admin user with UI with password "localhost8080"
+    And I am on the project "JiraTest" page
     When I create new issue in backlog with <message>
     And  I move it to current sprint
     And  I create another issue and move to current sprint

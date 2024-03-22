@@ -30,30 +30,17 @@ public class MoveIssueUI {
         homePO = new HomePO();
     }
 
-    @Given("I log in and am on backlog page")
-    public void iLogInAndAmOnBacklogPage() {
-        // Enter username and password
-        WebElement usernameInput = driver.findElement(By.id("login-form-username"));
-        WebElement passwordInput = driver.findElement(By.id("login-form-password"));
-        WebElement loginButton = driver.findElement(By.id("login"));
+//    @Given("I log in and am on backlog page")
+//    public void iLogInAndAmOnBacklogPage() throws InterruptedException {
 
-        usernameInput.sendKeys("admin");
-        passwordInput.sendKeys("localhost8080");
-
-        // Click the login button
-        loginButton.click();
-
-        try{
-            driver.navigate().to(URL.Backlog.toString());
-            projectPO.clickBacklogBtn();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-    }
+//        driver.navigate().to(URL.Backlog.toString());
+//        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(2));
+//        projectPO.clickBacklogBtn();
+//    }
 
     @When("I create new issue in backlog with {string}")
     public void iCreateNewIssueInBacklogWithMessage(String message) {
+        projectPO.clickBacklogBtn();
         projectPO.clickCreateBacklogIssue();
         projectPO.inputBacklogIssue(message);
     }
@@ -80,19 +67,25 @@ public class MoveIssueUI {
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(2));
 
         WebElement source = driver.findElement(By.xpath("(//div[@class='ghx-issue-content'])[2]"));
-        WebElement target = driver.findElement(By.xpath("//div[@class='ghx-sprint-info']"));
+        WebElement target = driver.findElement(By.xpath("(//div[@class='ghx-issues js-issue-list ghx-has-issues'])[1]"));
         new Actions(driver)
                 .dragAndDrop(source, target)
                 .pause(Duration.ofSeconds(3))
                 .release()
                 .build()
                 .perform();
+
+
     }
 
     @Then("The issue should be move successfully to the new sprint")
     public void theIssueShouldBeMoveSuccessfullyToTheNewSprint() {
         WebElement issueCount = driver.findElement(By.xpath("//div[@class='ghx-issue-count'][1]"));
         Assert.assertEquals(issueCount.getText(), "2 issues");
+
+        driver.findElement(By.xpath("//button[@class='js-sprint-start aui-button aui-button-primary']")).click();
+        WebElement start = driver.findElement(By.xpath("//button[@accesskey='s']"));
+        start.click();
     }
 
 
@@ -124,7 +117,7 @@ public class MoveIssueUI {
     @Then("I view all issues in the current sprint")
     public void iViewAllIssuesInTheCurrentSprint() {
         WebElement issueCount = driver.findElement(By.xpath("//div[@class='ghx-issue-count'][1]"));
-        Assert.assertEquals(issueCount.getText(), "1 issue");
+        Assert.assertEquals(issueCount.getText(), "2 issues");
     }
 
     @When("I log in as team lead user")

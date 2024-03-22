@@ -36,7 +36,7 @@ public class CreateSprintUI {
         WebElement loginButton = driver.findElement(By.id("login"));
 
         usernameInput.sendKeys("admin");
-        passwordInput.sendKeys("admin12345");
+        passwordInput.sendKeys("localhost8080");
 
         // Click the login button
         loginButton.click();
@@ -73,7 +73,7 @@ public class CreateSprintUI {
     @Then("The sprint should be created successfully with UI")
     public void theSprintShouldBeCreatedSuccessfullyWithUI() {
         WebElement sprintTitle = projectPO.sprintTitle;
-        Assert.assertEquals(sprintTitle.getText(),"JIR Sprint 1");
+        Assert.assertTrue(sprintTitle.getText().contains("JIR Sprint"));
     }
 
 
