@@ -14,13 +14,13 @@ public class CreateIssueUI {
         WebElement backLogButton = driver.findElement(By.xpath("//a[@aria-label='Backlog of test']"));
         backLogButton.click();
         // Find the button with the text "Create issue"
-        if(driver.findElement(By.xpath("//button[contains(text(), 'Create issue')]")) != null){
-            WebElement createIssueButton = driver.findElement(By.xpath("//button[contains(text(), 'Create issue')]"));
-            createIssueButton.click();
-        }
+//        if(driver.findElement(By.xpath("//button[contains(text(), 'Create issue')]")).isEnabled()){
+//            WebElement createIssueButton = driver.findElement(By.xpath("//button[contains(text(), 'Create issue')]"));
+//            createIssueButton.click();
+//        }
         // Click on the button
         Sleeper.SYSTEM_SLEEPER.sleep(java.time.Duration.ofSeconds(1));
-        WebElement openInDialogButton = driver.findElement(By.xpath("//button[contains(text(), 'Open in dialog')]"));
+        WebElement openInDialogButton = driver.findElement(By.xpath("//button[normalize-space()='Open in dialog']"));
         openInDialogButton.click();
         Sleeper.SYSTEM_SLEEPER.sleep(java.time.Duration.ofSeconds(1));
         WebElement summary = driver.findElement(By.id("summary"));
