@@ -86,6 +86,7 @@ public class MoveIssueUI {
         driver.findElement(By.xpath("//button[@class='js-sprint-start aui-button aui-button-primary']")).click();
         WebElement start = driver.findElement(By.xpath("//button[@accesskey='s']"));
         start.click();
+        driver.quit();
     }
 
 
@@ -118,6 +119,7 @@ public class MoveIssueUI {
     public void iViewAllIssuesInTheCurrentSprint() {
         WebElement issueCount = driver.findElement(By.xpath("//div[@class='ghx-issue-count'][1]"));
         Assert.assertEquals(issueCount.getText(), "2 issues");
+        driver.quit();
     }
 
     @When("I log in as team lead user")
@@ -178,5 +180,6 @@ public class MoveIssueUI {
     public void iApplyMonthReportAndDownload(int arg0) {
         WebElement download = driver.findElement(By.xpath("//canvas[@data-zr-dom-id='zr_0']"));
         download.click();
+        driver.quit();
     }
 }
