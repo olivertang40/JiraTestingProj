@@ -74,6 +74,7 @@ public class CreateSprintUI {
     public void theSprintShouldBeCreatedSuccessfullyWithUI() {
         WebElement sprintTitle = projectPO.sprintTitle;
         Assert.assertTrue(sprintTitle.getText().contains("JIR Sprint"));
+        driver.quit();
     }
 
 

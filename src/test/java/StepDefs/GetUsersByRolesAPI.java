@@ -23,7 +23,7 @@ public class GetUsersByRolesAPI {
 
     @Then("The users should be fetched correctly")
     public void theUsersShouldBeFetchedCorrectly() {
-        Assert.assertEquals(response.jsonPath().getString("actors[0].name"), "test2");
+        Assert.assertEquals(response.jsonPath().getString("actors[0].name"), "dev");
     }
 
 }

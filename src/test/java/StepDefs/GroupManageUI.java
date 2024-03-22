@@ -118,5 +118,6 @@ public class GroupManageUI {
     public void iShouldViewTheDeveloperRoleFilter() {
         WebElement curFilter = driver.findElement(By.xpath("(//span[@class='css-t5emrf'])[3]"));
         Assert.assertTrue(curFilter.getText().contains("developer"));
+        driver.quit();
     }
 }
