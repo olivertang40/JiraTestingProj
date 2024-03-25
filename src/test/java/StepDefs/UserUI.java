@@ -100,12 +100,12 @@ public class UserUI {
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
 
         //authenticate as admin user
-        WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
-        authInsert.sendKeys("12345");
-        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
-        WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
-        confirmButton.click();
-        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+//        WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
+//        authInsert.sendKeys("12345");
+//        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+//        WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
+//        confirmButton.click();
+//        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
 
         //click edit user status
         WebElement editUser = driver.findElement(By.id("edituser_link_user2"));
@@ -141,12 +141,12 @@ public class UserUI {
         Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
 
         //authenticate as admin user
-        WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
-        authInsert.sendKeys("12345");
-        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
-        WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
-        confirmButton.click();
-        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+//        WebElement authInsert = driver.findElement(By.id("login-form-authenticatePassword"));
+//        authInsert.sendKeys("12345");
+//        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
+//        WebElement confirmButton = driver.findElement(By.id("login-form-submit"));
+//        confirmButton.click();
+//        Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(1));
 
         //assign to a new group
         WebElement moreButton = driver.findElement(By.xpath("//a[@href='#user-actions-user2']"));
