@@ -34,12 +34,12 @@ public class UserAPI {
                 .post("http://localhost:8080/rest/api/2/user");
 
         //Validate the response
-        response.then().log().body().statusCode(201);
+        response.then().statusCode(201);
     }
 
     @Then("The user should be created successfully")
     public void theUserShouldBeCreatedSuccessfully() {
-        response.then().log().body().statusCode(201);
+        response.then().statusCode(201);
     }
 
     @When("I deactivate the user {string}")
@@ -53,12 +53,11 @@ public class UserAPI {
                 .auth().preemptive().basic(username, password)
                 .contentType("application/json")
                 .queryParam("username", userName)
-                .log().all()
                 .body("{\"active\":false}")
                 .put("http://localhost:8080/rest/api/2/user");
 
         // Validate the response
-        response.then().log().body().statusCode(200);
+        response.then().statusCode(200);
 
     }
 
@@ -74,7 +73,7 @@ public class UserAPI {
                 .get("/rest/api/2/user");
 
         // Validate the response
-        response.then().log().all().statusCode(200);
+        response.then().statusCode(200);
 
         //assert
         Assert.assertEquals("false", response.jsonPath().getString("active"));
@@ -95,7 +94,7 @@ public class UserAPI {
                 .post("/rest/api/2/group/user");
 
         // Validate the response
-        response.then().log().body().statusCode(200);
+        response.then().statusCode(201);
     }
 
     @Then("I find user in the group")
@@ -106,6 +105,7 @@ public class UserAPI {
         response = RestAssured.given()
                 .auth().preemptive().basic("admin", "12345")
                 .contentType("application/json")
+                .queryParam("groupname","test")
                 .get("/rest/api/2/group/member");
 
         // Validate the response
